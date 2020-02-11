@@ -1,1 +1,44 @@
 debug: true
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:ilinux_server.jks
+    key-password: 123456
+    key-store-type: pkcs12
+    key-alias: ilinux
+    key-store-password: 123456
+spring:
+  application:
+    name: springboot-basis
+  thymeleaf:
+    cache: false
+  security:
+    users:
+      - jude:{bcrypt}$2a$10$YLEG/U.It2vd0TUf.8AF1evYEr5XHlAzKWvA.6opWDbL8sk1UNdpC:ROLE_USER
+      - admin:{bcrypt}$2a$10$AVKeA5bzw5geqR1g2D1oEuQSaLSuK5D3oFP8ZIcFOuA1hBHaJJjZe:ROLE_ADMIN
+info:
+  author: jude
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+          - metrics
+          - beans
+          - conditions
+          - configprops
+          - env
+#          - httptrace
+          - loggers
+          - mappings
+#          - sessions
+#          - shutdown
+#          - threaddump
+#          - heapdump
+#          - logfile
